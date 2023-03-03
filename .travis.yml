@@ -3,7 +3,7 @@ services: #installs a copy of docker into the machine(or travis process, needs t
   - docker
 
 before_install: #defines commands that will run before what's is the .travis.yml file runs (testing or deployment)
-  - docker build -t Ahmadtawfik10/docker-react:latest -f Dockerfile.dev . #building the docker image, and I'm tagging the image because I can't copy the image ID generated from the CLI so I tagged it to refer to it later for container building
+  - docker build -t ahmadtawfik10/docker-react:latest -f Dockerfile.dev . #building the docker image, and I'm tagging the image because I can't copy the image ID generated from the CLI so I tagged it to refer to it later for container building
 
 #travis will be watching the output from all of the next commands, and for each command if it returns an exit code other than 0, travis will assume that the build failed or the test failed (or what ever I want to execute failed), so travis doesn't care about stuff that gets printed in the console it only cares about the exit code
 #travis will be waiting for commands to finish in order to go the next command, so I have to make the test command runs and exits and doesn't wait for input or other wise travis will still be waiting for the command to exit
