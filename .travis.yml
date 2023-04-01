@@ -2,10 +2,32 @@ sudo: required #tells travis that we need super user permissions
 services: #installs a copy of docker into the machine(or travis process, needs to be searched) that travis will spin in order to run whatever is in the .travis.yml file
   - docker
 
-before_install: #defines commands that will run before what's is the .travis.yml file runs (testing or deployment)
+before_install: #defines commands that will run before what I want to execute (testing or deployment)
   - docker build -t ahmadtawfik10/docker-react:latest -f Dockerfile.dev . #building the docker image, and I'm tagging the image because I can't copy the image ID generated from the CLI so I tagged it to refer to it later for container building
 
 #travis will be watching the output from all of the next commands, and for each command if it returns an exit code other than 0, travis will assume that the build failed or the test failed (or what ever I want to execute failed), so travis doesn't care about stuff that gets printed in the console it only cares about the exit code
 #travis will be waiting for commands to finish in order to go the next command, so I have to make the test command runs and exits and doesn't wait for input or other wise travis will still be waiting for the command to exit
-script: #includes all commands to actually run tests///////
+script: #execute all of the commands which should make the build pass or fail
   - docker run -e CI=true ahmadtawfik10/docker-react:latest npm run test #the -e CI=true is to let the test command exits when it finishes and don't wait for input
+
+
+
+
+
+
+
+
+#before_install:
+# execute all of the commands which need to be executed
+# before installing dependencies
+
+# install:
+# install all of the dependencies you need here
+
+# before_script:
+# execute all of the commands which need to be executed
+# before running actual tests
+
+# script:
+# execute all of the commands which
+# should make the build pass or fail
